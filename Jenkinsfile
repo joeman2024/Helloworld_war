@@ -22,7 +22,7 @@ pipeline {
         stage('Deploy to Tomcat') {
             steps {
                 echo 'Deploying the project...'
-                sh 'cp -r target/*.war /opt/tomcat/webapps'
+               deploy adapters: [tomcat9(credentialsId: 'tomcat-key', path: '', url: 'http://18.119.29.165:8080/')], contextPath: null, war: '**/*.war'
             }
         }
         stage('Test') {
