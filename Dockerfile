@@ -1,7 +1,6 @@
 FROM amazonlinux:2 
 
 RUN yum install httpd -y
-RUN systemctl start httpd
-RUN systemctl enable httpd
+RUN mkdir folder1
 
 EXPOSE 8080
