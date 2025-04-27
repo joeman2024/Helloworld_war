@@ -2,8 +2,8 @@ FROM amazonlinux:2
 
 RUN yum install httpd -y
 
-CMD /user/bin/httpd -DFOREGROUND 
+CMD /user/Sbin/httpd -DFOREGROUND 
 
-CMD /var/lib/jenkins/workspace/pipeline-docker/target/ SimpleTomcatWebApp.war  /var/www/html/
+COPY /var/lib/jenkins/workspace/pipeline-docker/target/SimpleTomcatWebApp.war  /var/www/html/
 
 EXPOSE 8070
