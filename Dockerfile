@@ -6,4 +6,4 @@ COPY
 
 CMD /user/bin/httpd -DFOREGROUND 
 
-EXPOSE 8080
+EXPOSE 80
