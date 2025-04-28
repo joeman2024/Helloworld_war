@@ -1,9 +1,9 @@
-FROM amazonlinux:2 
+FROM  amazonlinux:2
 
 RUN yum install httpd -y
 
 
-CMD /user/Sbin/httpd -DFOREGROUND 
+CMD /user/Sbin/httpd  -DFOREGROUND 
 
 
 
