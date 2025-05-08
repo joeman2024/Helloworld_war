@@ -8,4 +8,4 @@ CMD /user/Sbin/httpd  -DFOREGROUND
 
 
 
-EXPOSE 8070
+EXPOSE 8080
