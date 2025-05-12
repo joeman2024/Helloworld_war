@@ -2,6 +2,8 @@ gi pipeline {
     agent any
     tools {
         maven 'maven'
+        java 'jdk17'
+
     }
     stages {
         stage('git checkout') {
@@ -19,7 +21,7 @@ gi pipeline {
             sh 'mvn compile'
         }
       }
-      stage ('scan'){
+      stage ('file system scan'){
         steps {
             sh 'trivy fs .'
         }
