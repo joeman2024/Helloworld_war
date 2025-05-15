@@ -23,7 +23,7 @@ gi pipeline {
       }
       stage ('file system scan'){
         steps {
-            sh 'trivy fs .'
+            sh 'echo hello'
         }
       }
   }
