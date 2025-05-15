@@ -1,30 +1,44 @@
-gi pipeline {
+pipeline {
     agent any
-    tools {
+    tools{
         maven 'maven'
-        java 'jdk17'
-
+        jdk 'jdk17'
+    }
+    environment{
+        SCANNER_HOME = tool 'sonar-scanner'
     }
     stages {
         stage('git checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/joeman2024/Helloworld_war.git'
+             git url:'https://github.com/joeman2024/Helloworld_war.git'
+            }
         }
-      }
-      stage('test'){
-        steps {
-            sh 'mvn test'
+        stage('compile') {
+            steps {
+             sh 'mvn compile'
+            }
         }
-      }
-      stage("compile"){
-        steps {
-            sh 'mvn compile'
+         stage('test') {
+            steps {
+             sh 'mvn test'
+            }
         }
-      }
-      stage ('file system scan'){
-        steps {
-            sh 'trivy fs .'
+         stage('file system scan') {
+            steps {
+             sh 'trivy fs --format table -o scan-results.html .'
+            }
         }
-      }
-  }
+         stage('sonarQube Analysis') {
+            steps {
+             withSonarQubeEnv('sonar-server') {
+          sh  'mvn sonar:sonar'
+                  }
+            }
+        }
+         stage('Build code') {
+            steps {
+             sh 'mvn clean package'
+            }
+        }
+    }
 }
