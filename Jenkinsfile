@@ -38,6 +38,11 @@ pipeline {
          stage('Build code') {
             steps {
              sh 'mvn clean package'
+              }
+         }
+        stage('deploy to Artifact to Nexus') {
+            steps {
+             sh 'mvn clean package'
             }
         }
     }
