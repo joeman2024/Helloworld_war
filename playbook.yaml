@@ -1,0 +1,22 @@
+- hosts: test
+  become: true
+  tasks:
+    - name: install git package
+      package:
+        name: git
+        state: present
+
+    - name: start git service
+      service:
+        name: git
+        state: started
+
+    - name: install python3-pip package
+      package:
+        name: python3-pip
+        state: present
+
+    - name: install python3-venv package
+      package:
+        name: python3-venv
+        state: present
